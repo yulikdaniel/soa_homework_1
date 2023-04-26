@@ -1,5 +1,6 @@
 import serializable
 from json import loads, dumps
+import logging
 
 class JsonChecker(serializable.Checker):
     def serialize(self, arg):
@@ -9,7 +10,8 @@ class JsonChecker(serializable.Checker):
         return loads(string)
     
 def run_tests(verbose=0):
-    serializable.run_tests(JsonChecker(), verbose)
+    return serializable.run_tests(JsonChecker(), verbose)
 
 if __name__ == "__main__":
-    run_tests()
+    logging.basicConfig(level=logging.INFO)
+    logging.info(run_tests())

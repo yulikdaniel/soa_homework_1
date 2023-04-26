@@ -1,0 +1,103 @@
+services:
+  nativeTesterService:
+    image: native_image
+    build:
+      context: .
+      dockerfile: native.dockerfile
+    environment:
+      PORT: 2001
+    ports:
+      - 2001:2001/udp
+
+  jsonTesterService:
+    image: json_image
+    build:
+      context: .
+      dockerfile: json.dockerfile
+    environment:
+      PORT: 2002
+    ports:
+      - 2002:2002/udp
+
+  xmlTesterService:
+    image: xml_image
+    build:
+      context: .
+      dockerfile: xml.dockerfile
+    environment:
+      PORT: 2003
+    ports:
+      - 2003:2003/udp
+
+  protoTesterService:
+    image: proto_image
+    build:
+      context: .
+      dockerfile: proto.dockerfile
+    environment:
+      PORT: 2004
+    ports:
+      - 2004:2004/udp
+
+  avroTesterService:
+    image: avro_image
+    build:
+      context: .
+      dockerfile: avro.dockerfile
+    environment:
+      PORT: 2005
+    ports:
+      - 2005:2005/udp
+
+  yamlTesterService:
+    image: yaml_image
+    build:
+      context: .
+      dockerfile: yaml.dockerfile
+    environment:
+      PORT: 2006
+    ports:
+      - 2006:2006/udp
+
+  mpackTesterService:
+    image: mpack_image
+    build:
+      context: .
+      dockerfile: mpack.dockerfile
+    environment:
+      PORT: 2007
+    ports:
+      - 2007:2007/udp
+
+  proxyService:
+    image: proxy_image
+    build:
+      context: .
+      dockerfile: proxy.dockerfile  
+    environment:
+      PROXY_PORT: 2000
+      NATIVE_HOST: nativeTesterService
+      NATIVE_PORT: 2001
+      JSON_HOST: jsonTesterService
+      JSON_PORT: 2002
+      XML_HOST: xmlTesterService
+      XML_PORT: 2003
+      PROTO_HOST: protoTesterService
+      PROTO_PORT: 2004
+      AVRO_HOST: avroTesterService
+      AVRO_PORT: 2005
+      YAML_HOST: yamlTesterService
+      YAML_PORT: 2006
+      MPACK_HOST: mpackTesterService
+      MPACK_PORT: 2007
+      BROADCAST_LIST: NATIVE,JSON,XML,PROTO,AVRO,YAML,MPACK
+    ports:
+      - 2000:2000/udp
+    depends_on:
+      - nativeTesterService
+      - jsonTesterService
+      - xmlTesterService
+      - protoTesterService
+      - avroTesterService
+      - yamlTesterService
+      - mpackTesterService

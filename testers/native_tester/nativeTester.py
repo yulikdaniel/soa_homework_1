@@ -1,4 +1,5 @@
 import serializable
+import logging
 from ast import literal_eval
 
 class NativeChecker(serializable.Checker):
@@ -9,7 +10,8 @@ class NativeChecker(serializable.Checker):
         return literal_eval(string)
     
 def run_tests(verbose=0):
-    serializable.run_tests(NativeChecker(), verbose)
+    return serializable.run_tests(NativeChecker(), verbose)
 
 if __name__ == "__main__":
-    run_tests()
+    logging.basicConfig(level=logging.INFO)
+    logging.info(run_tests())
