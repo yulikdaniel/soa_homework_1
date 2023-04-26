@@ -7,3 +7,20 @@
 Тестеры используют общую библиотеку `serializable.py`, которая определяет базовый класс сериализатора/десериализатора и все функции, необходимые для тестирования. Кроме того, они используют сервер `testers/tester_server.py`, который при получении запроса просто вызывает функцию `run_tests` у формата из своего контейнера (который он узнаёт из аргумента командной строки, с которым его запускает докер).
 
 Вот вроде бы и всё.
+
+Инструкции по использованию: из корня папки запустить команду:
+
+`docker-compose build nativeTesterService jsonTesterService xmlTesterService protoTesterService avroTesterService yamlTesterService mpackTesterService proxyService`
+
+Затем
+
+`docker-compose up -d nativeTesterService jsonTesterService xmlTesterService protoTesterService avroTesterService yamlTesterService mpackTesterService proxyService`
+
+Для запуска тестов:
+
+`echo -n "ALL" | nc -u localhost 2000`
+
+Вместо `ALL` можно подставить `NATIVE`, `JSON`, `XML`, `PROTO`, `AVRO`, `YAML`, `MPACK`.
+
+
+Комментарий: при тестировке некоторых форматов (например, протобуфов) я перегрузил дефолтные методы для замерения времени, чтобы не учитывать время, уходящее на смену формата с питоновского словаря на протобуф, а замерять только сериализацию.
