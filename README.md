@@ -10,7 +10,9 @@
 
 Инструкции по использованию: из корня папки запустить команду:
 
-`docker-compose build nativeTesterService jsonTesterService xmlTesterService protoTesterService avroTesterService yamlTesterService mpackTesterService proxyService`
+`docker-compose pull` - подтягивает картинки всех тестеров
+
+`docker-compose build proxyService`
 
 Затем
 

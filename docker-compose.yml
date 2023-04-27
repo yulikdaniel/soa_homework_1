@@ -2,7 +2,7 @@ version: "3.4"
 
 services:
   nativeTesterService:
-    image: native_image
+    image: yulikdaniel/nativetest
     build:
       context: .
       dockerfile: native.dockerfile
@@ -12,60 +12,42 @@ services:
       MULTICAST_PORT: 2001
 
   jsonTesterService:
-    image: json_image
-    build:
-      context: .
-      dockerfile: json.dockerfile
+    image: yulikdaniel/jsontest
     environment:
       PORT: 2001
       MULTICAST_HOST: 224.3.29.71
       MULTICAST_PORT: 2001
 
   xmlTesterService:
-    image: xml_image
-    build:
-      context: .
-      dockerfile: xml.dockerfile
+    image: yulikdaniel/xmltest
     environment:
       PORT: 2001
       MULTICAST_HOST: 224.3.29.71
       MULTICAST_PORT: 2001
 
   protoTesterService:
-    image: proto_image
-    build:
-      context: .
-      dockerfile: proto.dockerfile
+    image: yulikdaniel/prototest
     environment:
       PORT: 2001
       MULTICAST_HOST: 224.3.29.71
       MULTICAST_PORT: 2001
 
   avroTesterService:
-    image: avro_image
-    build:
-      context: .
-      dockerfile: avro.dockerfile
+    image: yulikdaniel/avrotest
     environment:
       PORT: 2001
       MULTICAST_HOST: 224.3.29.71
       MULTICAST_PORT: 2001
 
   yamlTesterService:
-    image: yaml_image
-    build:
-      context: .
-      dockerfile: yaml.dockerfile
+    image: yulikdaniel/yamltest
     environment:
       PORT: 2001
       MULTICAST_HOST: 224.3.29.71
       MULTICAST_PORT: 2001
 
   mpackTesterService:
-    image: mpack_image
-    build:
-      context: .
-      dockerfile: mpack.dockerfile
+    image: yulikdaniel/mpacktest
     environment:
       PORT: 2001
       MULTICAST_HOST: 224.3.29.71
