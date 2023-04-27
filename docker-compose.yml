@@ -77,6 +77,7 @@ services:
       context: .
       dockerfile: proxy.dockerfile  
     environment:
+      NUM_TESTERS: 7
       PROXY_PORT: 2000
       NATIVE_HOST: nativeTesterService
       NATIVE_PORT: 2001

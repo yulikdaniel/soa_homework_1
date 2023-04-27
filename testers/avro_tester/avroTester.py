@@ -11,17 +11,25 @@ schema = parse('''
     "name": "TPerson",
     "fields": [
         {"name": "name", "type": "string"},
-        {"name": "age", "type": "string"},
+        {"name": "age", "type": "int"},
         {"name": "contacts",  "type":
             {
                 "type": "record",
                 "name": "TContacts",
                 "fields": [
-                    {"name": "phone", "type": "string"},
+                    {"name": "phone", "type": "int"},
                     {"name": "email", "type": "string"}
                 ]
             }
-        }
+        },
+        {"name": "friends", "type": {
+            "type": "array", "items":
+            [{
+                "name": "friend", "type": "string"
+            }]
+            }
+        },
+        {"name": "apeIndex", "type": "float"}
     ]
 }''')
 
@@ -42,8 +50,8 @@ class AvroChecker(serializable.Checker):
         reader = DatumReader(self.schema)
         return reader.read(decoder)
     
-def run_tests(verbose=0):
-    return serializable.run_tests(AvroChecker(schema), verbose)
+def run_tests():
+    return serializable.run_tests(AvroChecker(schema))
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)

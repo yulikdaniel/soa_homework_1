@@ -4,12 +4,14 @@ package stress;
 
 message TPerson {
   optional string name = 1;
-  optional string age = 2;
+  optional int32 age = 2;
 
   message TContacts {
-    optional string phone = 1;
+    optional int32 phone = 1;
     optional string email = 2;
   }
 
   optional TContacts contacts = 3;
+  repeated string friends = 4;
+  optional float apeIndex = 5;
 }

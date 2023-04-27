@@ -1,6 +1,6 @@
 import serializable
 from stressformat_pb2 import TPerson
-from google.protobuf.json_format import ParseDict, MessageToDict
+from google.protobuf.json_format import ParseDict, MessageToDict, MessageToJson
 import logging
 import timeit
 
@@ -25,8 +25,8 @@ class ProtoChecker(serializable.Checker):
         message = self.format()
         return timeit.timeit(lambda: message.ParseFromString(string), number=1000)
     
-def run_tests(verbose=0):
-    return serializable.run_tests(ProtoChecker(TPerson), verbose)
+def run_tests():
+    return serializable.run_tests(ProtoChecker(TPerson))
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)

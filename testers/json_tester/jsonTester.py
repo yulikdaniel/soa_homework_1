@@ -9,8 +9,8 @@ class JsonChecker(serializable.Checker):
     def deserialize(self, string):
         return loads(string)
     
-def run_tests(verbose=0):
-    return serializable.run_tests(JsonChecker(), verbose)
+def run_tests():
+    return serializable.run_tests(JsonChecker())
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)

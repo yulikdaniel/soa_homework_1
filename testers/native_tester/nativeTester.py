@@ -9,8 +9,8 @@ class NativeChecker(serializable.Checker):
     def deserialize(self, string):
         return literal_eval(string)
     
-def run_tests(verbose=0):
-    return serializable.run_tests(NativeChecker(), verbose)
+def run_tests():
+    return serializable.run_tests(NativeChecker())
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
