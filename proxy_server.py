@@ -13,7 +13,7 @@ logging.info(f'Started listening on {("0.0.0.0", int(os.getenv("PROXY_PORT")))}'
 
 while True:
     tester, query_author = sock.recvfrom(1024)
-    tester = tester.decode()
+    tester = tester.decode().strip()
     logging.info(f"Received {tester} from {query_author}")
     if tester == "ALL":
         logging.info(f'Sending message to {(os.getenv("MULTICAST_HOST"), int(os.getenv("MULTICAST_PORT")))}')
